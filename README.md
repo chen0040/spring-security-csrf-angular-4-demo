@@ -50,38 +50,21 @@ http
 
 which can be found in the com.github.chen0040.bootslingshot.configs.WebSecurityConfig
 
-And the class implementation for the autowired authenticationSuccessHandler is shown below:
+The web login api can be found in the com.github.chen0040.bootslingshot.controllers.WebApiController. which consists
+ of GET and POST api for the same url "/erp/login-api-json".
+ 
+Any client which wants to authenticate with the spring security in spring-boot-application can first call
 
-```java
-@Component
-public class SpringAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
+GET: http://localhost:8080/erp/login-api-json
 
-   @Override
-   public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
-           throws IOException, ServletException {
+this will return a json object containing a valid csrf token YOUR_CSRF_TOKEN, the same client can then post to the same url:
 
+POST: http://localhost:8080/erp/login-api-json
 
-      String ajax = request.getParameter("ajax");
+with the following headers:
 
-      String username = authentication.getName();
-
-      System.out.println("User: "+username);
-
-      if(ajax != null && ajax.equalsIgnoreCase("true"))
-      {
-         CsrfToken csrf = (CsrfToken)request.getAttribute(CsrfToken.class
-                 .getName());
-         response.getWriter().println("APP-AJAX-LOGIN-SUCCESS;"+csrf.getToken());
-      }
-      else
-      {
-         super.onAuthenticationSuccess(request, response, authentication);
-      }
-   }
-}
-```
-
-which can be found in the com.github.chen0040.bootslingshot.components.SpringAuthenticationSuccessHandler .
+_csrf: YOUR_CSRF_TOKEN
+Cookie: XSRF-TOKEN=YOUR_CSRF_TOKEN
 
 # Usage
 

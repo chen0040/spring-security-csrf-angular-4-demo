@@ -14,7 +14,7 @@ public class UserController {
     @Autowired
     private SpringAuthentication springAuthentication;
 
-    @RequestMapping(value = "/users/get-account", method = RequestMethod.POST)
+    @RequestMapping(value = "/users/get-account", method = RequestMethod.GET)
     public @ResponseBody
     SpringUser getAccount() {
         return springAuthentication.getUser();
