@@ -2,7 +2,7 @@
 
 This project contains demo codes on how to communicate an angular 4 project with a spring boot application that has spring security enabled.
 
-# Setup
+# Spring Security
 
 ### spring-boot-application with spring security and CSRF enabled
 
@@ -67,32 +67,28 @@ POST: http://localhost:8080/erp/login-api-json
 
 with the following headers:
 
-_csrf: YOUR_CSRF_TOKEN
-Cookie: XSRF-TOKEN=YOUR_CSRF_TOKEN
-X-XSRF-TOKEN: YOUR_CSRF_TOKEN 
+* _csrf: YOUR_CSRF_TOKEN
+* Cookie: XSRF-TOKEN=YOUR_CSRF_TOKEN
+* X-XSRF-TOKEN: YOUR_CSRF_TOKEN 
 
 If login is successful, you can find the response json object has authenticated set to true.
 By examining the Set-Cookie header of the POST response, you should be able to extract the JSESSIONID=YOUR_SESSION_ID.
 
 Now after login is successful, you can access the spring security protected api by adding the following in the header:
 
-_csrf: YOUR_CSRF_TOKEN
-Cookie: XSRF-TOKEN=YOUR_CSRF_TOKEN;JSESSIONID=YOUR_SESSION_ID
-X-XSRF-TOKEN: YOUR_CSRF_TOKEN 
+* _csrf: YOUR_CSRF_TOKEN
+* Cookie: XSRF-TOKEN=YOUR_CSRF_TOKEN;JSESSIONID=YOUR_SESSION_ID
+* X-XSRF-TOKEN: YOUR_CSRF_TOKEN 
 
 
 # Usage
 
-### Build the applications
+### Spring Server
 
 Run the "./make.ps1" (windows environment) and "./make.sh" (unix environment). which will compile and stores the built
 jars in the "bin" folder.
 
 * spring-boot-application: the spring boot application that has csrf-enabled spring security configuration
-* spring-boot-client: a java client that can login the spring-boot-application via restful web api.
-* spring-boot-client-sample-app: a sample swing application that uses the spring-boot-client to login to the spring-boot-application
-
-### Start the spring-boot-application
 
 ```bash
 java -jar bin/spring-boot-application.jar
