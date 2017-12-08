@@ -112,24 +112,33 @@ DEMO:
 * username: demo
 * password: demo
 
-### Use spring-boot-client in your project:
+### Java Client
 
-The following are the excerpt from spring-boot-client unit test to show how to login to the spring-boot-application:
+The following are the excerpt from spring-boot-java-client unit test to show how to login to the spring-boot-application:
 
 ```java
-String username = "admin";
-String password = "admin";
-SpringBootClient.getSingleton().setBaseUrl("http://localhost:8080");
-SpringBootClient.getSingleton().login(username, password, (authenticationResult)->{
+SpringBootClient client = new SpringBootClient();
+SpringIdentity identity = client.login("http://localhost:8080/erp/login-api-json", "admin", "admin");
 
-    if(authenticationResult.isAuthenticated()){
-        System.out.println("user successfully login");
-    }
-});
-SpringBootClient.getSingleton().isAuthenticated();
-SpringBootClient.getSingleton().getToken();
+System.out.println(JSON.toJSONString(identity, SerializerFeature.PrettyFormat));
+System.out.println(client.getSecured("http://localhost:8080/users/get-account"));
 ```
 
+### Javascript Client
+
+```js
+var expect    = require("chai").expect;
+var sbjclient = require('../src/sbjclient');
+var url = 'http://localhost:8080/erp/login-api-json';
+
+var cl = new sbjclient.SpringBootClient();
+cl.login(url, "admin", "admin", function(_csrf, _sessionId, authenticated){
+    console.log('authenticated: ' + authenticated);
+    console.log('_csrf: ' + _csrf);
+    console.log('JSESSIONID: ' + _sessionId);
+    expect(authenticated).to.equal(true);
+});
+```
 
 
 
