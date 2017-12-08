@@ -6,3 +6,5 @@ out/
 
 *.iml
 .idea/
+
+spring-boot-js-client/node_modules

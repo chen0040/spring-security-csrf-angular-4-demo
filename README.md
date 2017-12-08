@@ -4,6 +4,8 @@ This project contains demo codes on how to communicate an angular 4 project with
 
 # Setup
 
+### spring-boot-application with spring security and CSRF enabled
+
 To use this project create a database named spring_boot_slingshot in your mysql database (make sure it is running at localhost:3306)
 
 ```sql
@@ -50,6 +52,8 @@ http
 
 which can be found in the com.github.chen0040.bootslingshot.configs.WebSecurityConfig
 
+### principle behind restful login to spring-boot-application
+
 The web login api can be found in the com.github.chen0040.bootslingshot.controllers.WebApiController. which consists
  of GET and POST api for the same url "/erp/login-api-json".
  
@@ -65,6 +69,17 @@ with the following headers:
 
 _csrf: YOUR_CSRF_TOKEN
 Cookie: XSRF-TOKEN=YOUR_CSRF_TOKEN
+X-XSRF-TOKEN: YOUR_CSRF_TOKEN 
+
+If login is successful, you can find the response json object has authenticated set to true.
+By examining the Set-Cookie header of the POST response, you should be able to extract the JSESSIONID=YOUR_SESSION_ID.
+
+Now after login is successful, you can access the spring security protected api by adding the following in the header:
+
+_csrf: YOUR_CSRF_TOKEN
+Cookie: XSRF-TOKEN=YOUR_CSRF_TOKEN;JSESSIONID=YOUR_SESSION_ID
+X-XSRF-TOKEN: YOUR_CSRF_TOKEN 
+
 
 # Usage
 

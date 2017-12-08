@@ -11,7 +11,7 @@
 
     <modules>
         <module>spring-boot-application</module>
-        <module>spring-boot-client</module>
+        <module>spring-boot-java-client</module>
     </modules>
 
 

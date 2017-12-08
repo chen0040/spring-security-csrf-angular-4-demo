@@ -1,0 +1,31 @@
+{
+  "name": "spring-boot-js-client",
+  "version": "1.0.0",
+  "description": "js client to connect to spring web application that has spring security and csrf enabled",
+  "main": "src/sbjclient.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chen0040/spring-security-angular-4-demo.git"
+  },
+  "keywords": [
+    "spring",
+    "security",
+    "js",
+    "client"
+  ],
+  "author": "chen0040",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chen0040/spring-security-angular-4-demo/issues"
+  },
+  "homepage": "https://github.com/chen0040/spring-security-angular-4-demo#readme",
+  "dependencies": {
+    "axios": "^0.17.1"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2"
+  }
+}
