@@ -2,6 +2,13 @@
 
 This project contains demo codes on how to communicate an angular 4 project with a spring boot application that has spring security enabled.
 
+# Features
+
+* Simple spring boot web application with spring security and CSRF enabled
+* Java client to authenticate and communicate with the spring boot web application
+* Javascript client to authenticate and communicate with the spring boot web application
+* Angular 4 web application to authenticate and communicate with the spring boot web application
+
 # Spring Security
 
 ### spring-boot-application with spring security and CSRF enabled
@@ -27,6 +34,7 @@ http
 .antMatchers("/js/client/**").hasAnyRole("USER", "ADMIN")
 .antMatchers("/js/admin/**").hasAnyRole("ADMIN")
 .antMatchers("/admin/**").hasAnyRole("ADMIN")
+.antMatchers("/erp/login-api-json").permitAll()
 .antMatchers("/html/**").hasAnyRole("USER", "ADMIN")
 .antMatchers("/js/commons/**").permitAll()
 .antMatchers("/css/**").permitAll()
@@ -108,6 +116,8 @@ DEMO:
 * username: demo
 * password: demo
 
+In the following instructions, http://localhost:8080/users/get-account is an url that requires authentication.
+
 ### Java Client
 
 The following are the excerpt from spring-boot-java-client unit test to show how to login to the spring-boot-application:
@@ -133,6 +143,9 @@ cl.login(url, "admin", "admin", function(_csrf, _sessionId, authenticated){
     console.log('_csrf: ' + _csrf);
     console.log('JSESSIONID: ' + _sessionId);
     expect(authenticated).to.equal(true);
+    cl.getJsonSecured('http://localhost:8080/users/get-account', function(account){
+        console.log(account);
+    });
 });
 ```
 

@@ -14,7 +14,24 @@ if(require){
         this.authenticated = false;
     };
 
+    SpringBootClient.prototype.getJsonSecured = function(url, callback) {
+
+        axios({
+            method: 'get',
+            url: url,
+            responseType: 'json',
+            headers: {
+                '_csrf': this._csrf,
+                'Cookie': 'XSRF-TOKEN=' + this._csrf + ';JSESSIONID=' + this.sessionId,
+                'X-XSRF-TOKEN': this._csrf
+            }
+        }).then(function(response){
+            callback(response.data);
+        });
+    };
+
     SpringBootClient.prototype.login = function (url, username, password, callback) {
+        var that = this;
         this.loginGet(url, (function(_username, _password){
             return function(_url){
                   axios({
@@ -26,13 +43,13 @@ if(require){
                           password: _password
                       },
                       headers: {
-                          '_csrf': this._csrf,
-                          'Cookie': 'XSRF-TOKEN=' + this._csrf,
-                          'X-XSRF-TOKEN': this._csrf
+                          '_csrf': that._csrf,
+                          'Cookie': 'XSRF-TOKEN=' + that._csrf,
+                          'X-XSRF-TOKEN': that._csrf
             }
                   }).then(function(response){
                       var result = response.data;
-                      this.authenticated = result.authenticated;
+                      that.authenticated = result.authenticated;
                       if(result.authenticated) {
                           var cookie = response.headers['set-cookie'][0];
                           var cookies = cookie.split(';');
@@ -43,8 +60,8 @@ if(require){
                                   var name = cpair[0];
                                   var value = cpair[1];
                                   if(name === 'JSESSIONID') {
-                                      this.sessionId = value;
-                                      callback(this._csrf, this.sessionId, this.authenticated);
+                                      that.sessionId = value;
+                                      callback(that._csrf, that.sessionId, that.authenticated);
                                       break;
                                   }
                               }
@@ -59,6 +76,7 @@ if(require){
     };
 
     SpringBootClient.prototype.loginGet = function(url, callback) {
+        var that = this;
         axios({
             method:'get',
             url:url,
@@ -75,7 +93,7 @@ if(require){
                         var name = cpair[0];
                         var value = cpair[1];
                         if(name === 'XSRF-TOKEN') {
-                            this._csrf = value;
+                            that._csrf = value;
                             callback(url);
                             break;
                         }

@@ -11,6 +11,9 @@ describe("Spring Boot Login api test", function() {
         console.log('_csrf: ' + _csrf);
         console.log('JSESSIONID: ' + _sessionId);
         expect(authenticated).to.equal(true);
+        cl.getJsonSecured('http://localhost:8080/users/get-account', function(account){
+            console.log(account);
+        });
     });
 
   });
