@@ -6,16 +6,16 @@ Run the following command line to install angular-cli globally
 npm install -g @angular/cli
 ```
 
-Run the following command line to create an angular project "ng4-erp" using cli:
+Run the following command line to create an angular project "ng4-application" using cli:
 
 ```bash
-ng new ng4-erp
+ng new ng4-application
 ```
 
-cd to the "ng4-erp" folder and run the following command line to check the version of angular installed:
+cd to the "ng4-application" folder and run the following command line to check the version of angular installed:
 
 ```bash
-cd ng4-erp
+cd ng4-application
 ng -v
 ```
 
@@ -28,7 +28,7 @@ You must also check to make sure you have the typescript version higher than 2.1
 command:
 
 ```bash
-cd ng4-erp
+cd ng4-application
 npm instal typescript@2.3.4 --save
 ```
 
@@ -54,22 +54,22 @@ Note that you must have spring-erp running at localhost:8080 otherwise api call 
 cd to "np4-erp" and run the following command to install express and axios:
 
 ```bash
-cd ng4-erp
+cd ng4-application
 npm install express body-parser axios --save
 ```
 
-Add the server.js and server/routes folder to ng4-erp folder. Now cd to "ng4-erp" run 
+Add the server.js and server/routes folder to ng4-application folder. Now cd to "ng4-application" run 
 the following command to build the dist version 
 
 ```bash
-cd ng4-erp
+cd ng4-application
 ng build
 ```
 
 Now to start the server at port 3000, run the following command:
 
 ```bash
-cd ng4-erp
+cd ng4-application
 node server.js
 ```
 

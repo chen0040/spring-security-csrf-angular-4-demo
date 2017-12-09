@@ -132,6 +132,8 @@ System.out.println(client.getSecured("http://localhost:8080/users/get-account"))
 
 ### Javascript Client
 
+The following are the excerpt from spring-boot-js-client unit test to show how to login to the spring-boot-application:
+
 ```js
 var expect    = require("chai").expect;
 var sbjclient = require('../src/sbjclient');
@@ -148,6 +150,27 @@ cl.login(url, "admin", "admin", function(_csrf, _sessionId, authenticated){
     });
 });
 ```
+
+### Angular 4 NodeJS Server
+
+The angular 4 nodejs server server.js is in the ng4-application folder. its uses sbjclient from spring-boot-js-client,
+the spring boot javascript client to authenticate with spring-boot-application. 
+
+To test the angular 4 application, run the following command in the ng4-application directory (make sure that spring-boot-application is already running):
+
+```bash
+ng build
+node server.js
+```
+
+This will start the angular 4 server at http://localhost:3000
+
+The detail implementation of angular 4 to authenticate with spring-boot-application can be found in server.js and
+src/app/app.service.ts
+
+
+
+
 
 
 
