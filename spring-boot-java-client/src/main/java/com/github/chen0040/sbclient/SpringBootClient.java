@@ -27,6 +27,19 @@ public class SpringBootClient {
         return webClient.get(url, headers);
     }
 
+    public String postJsonSecured(String url, Object obj){
+
+        Map<String, String> headers = new HashMap<>();
+
+        String csrf = webClient.getToken();
+        headers.put("_csrf", csrf);
+        headers.put("X-XSRF-TOKEN", csrf);
+        headers.put("Cookie", "XSRF-TOKEN=" + csrf + ";JSESSIONID=" + webClient.getSessionId());
+        headers.put("Content-Type", "application/json");
+
+        return webClient.post(url, JSON.toJSONString(obj, SerializerFeature.BrowserCompatible), headers);
+    }
+
     public SpringIdentity login(String url, String username, String password) {
         SpringIdentity identity = new SpringIdentity();
         try {

@@ -7,4 +7,6 @@ out/
 *.iml
 .idea/
 
+bin/*.jar
+
 spring-boot-js-client/node_modules

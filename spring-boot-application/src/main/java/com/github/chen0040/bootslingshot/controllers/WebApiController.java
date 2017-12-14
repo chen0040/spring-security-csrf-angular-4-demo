@@ -1,8 +1,8 @@
 package com.github.chen0040.bootslingshot.controllers;
 
 import com.github.chen0040.bootslingshot.components.SpringRequestHelper;
-import com.github.chen0040.bootslingshot.models.LoginObj;
-import com.github.chen0040.bootslingshot.models.SpringIdentity;
+import com.github.chen0040.bootslingshot.viewmodels.LoginObj;
+import com.github.chen0040.bootslingshot.viewmodels.SpringIdentity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

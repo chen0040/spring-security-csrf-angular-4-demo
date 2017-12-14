@@ -116,7 +116,10 @@ DEMO:
 * username: demo
 * password: demo
 
-In the following instructions, http://localhost:8080/users/get-account is an url that requires authentication.
+In the following instructions, 
+
+* http://localhost:8080/users/get-account is an GET url that requires authentication.
+* http://localhost:8080/users/get-account-by-username is an POST url that requires authentication
 
 ### Java Client
 
@@ -128,6 +131,10 @@ SpringIdentity identity = client.login("http://localhost:8080/erp/login-api-json
 
 System.out.println(JSON.toJSONString(identity, SerializerFeature.PrettyFormat));
 System.out.println(client.getSecured("http://localhost:8080/users/get-account"));
+
+SpringIdentity si = new SpringIdentity();
+si.setUsername("demo");
+System.out.println(client.postJsonSecured("http://localhost:8080/users/get-account-by-username", si));
 ```
 
 ### Javascript Client

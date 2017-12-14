@@ -1,4 +1,4 @@
-package com.github.chen0040.bootslingshot.models;
+package com.github.chen0040.bootslingshot.viewmodels;
 
 import lombok.Getter;
 import lombok.Setter;

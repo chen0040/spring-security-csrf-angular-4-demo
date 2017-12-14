@@ -8,9 +8,14 @@ public class SpringBootClientUnitTest {
     @Test
     public void testLogin() {
         SpringBootClient client = new SpringBootClient();
+
         SpringIdentity identity = client.login("http://localhost:8080/erp/login-api-json", "admin", "admin");
 
         System.out.println(JSON.toJSONString(identity, SerializerFeature.PrettyFormat));
         System.out.println(client.getSecured("http://localhost:8080/users/get-account"));
+
+        SpringIdentity si = new SpringIdentity();
+        si.setUsername("demo");
+        System.out.println(client.postJsonSecured("http://localhost:8080/users/get-account-by-username", si));
     }
 }
